@@ -7,43 +7,48 @@ import { useEffect,useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ProjectImage from "./utils/ProjectImage";
-
+import MathsGeekImg from '../assets/MathsGeek.jpg';
+import Digisafe from '../assets/Digisafe.png';
+import Coverter from '../assets/ConverterApp.jpg';
+import Tradingbot from '../assets/Tradingbot.png';
+import SocilaMediaApp from '../assets/SocilaMediaApp.png'
+import BookStore from '../assets/BookStore.png'
 const projects = [
   {
     title: "MathsGeeks",
     description:
       "An AI-powered mathematics learning platform designed for personalized, engaging, and accessible learning.",
-    image: "/MathsGeek.jpg",
+    image: MathsGeekImg,
   },
   {
     title: "Digisafe Vault App",
     description:
       "A secure digital vault for personal data protection, emphasizing privacy and user control.",
-    image: "/Digisafe.png",
+    image: Digisafe,
   },
   {
     title: "Converter",
     description:
       "This is a modular, Python-based File Format Converter toolkit designed to handle a wide variety of file transformations commonly used in office, image, and document processing tasks. The project supports conversions between image, document, and spreadsheet formats, and is structured into dedicated micro-tools for ease of maintenance and reuse.",
-    image: "/ConverterApp.jpg",
+    image: Coverter,
   },
   {
     title: "Trading‑App",
     description:
       "A cross‑platform trading assistant app for Android (and desktops), built using Python and the Kivy framework (KV language for UI). Designed to streamline intraday and portfolio-based trading workflows with a clean, intuitive interface.",
-    image: "/Tradingbot.png",
+    image: Tradingbot,
   },
   {
     title: "SocialMediaApp",
     description:
       "A full-featured social media mobile application built with Python, HTML and CSS, delivering a modern and interactive social experience",
-    image: "/SocilaMediaApp.png",
+    image: SocilaMediaApp,
   },
   {
     title: "BookStoreAPP",
     description:
       "A scalable, full‑stack Bookstore web application built entirely in TypeScript, providing a seamless shopping experience for book lovers.",
-    image: "/Capstone.png",
+    image: BookStore,
   },
   
   

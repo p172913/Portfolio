@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from "../lib/utils";
+import pic from "../assets/LFX_Avatar.jpg"
 
 const About = () => {
   return (
@@ -18,7 +19,7 @@ const About = () => {
         {/* Profile Image */}
         <div className="w-64 h-64 rounded-full overflow-hidden flex-shrink-0 border-4 border-neutral-800">
           <img
-            src="/LFX_Avatar.jpg"
+            src={pic}
             alt="Avatar"
             className="w-full h-full object-cover"
           />
