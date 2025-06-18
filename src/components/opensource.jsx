@@ -21,12 +21,6 @@ const projects = [
       "Changes made in configuration.py to accept environmental variables",
     link: "https://github.com/kubernetes-client/python/pull/2390"
   },
-  {
-    title: "Kubernetes",
-    description:
-      "corrected kubectl logs error when node with pod has disappeared",
-    link: "https://github.com/kubernetes/kubernetes/pull/132310"
-  },
   
   
 ];
