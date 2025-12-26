@@ -18,8 +18,9 @@ const Mainscreen = () => {
       
       {/* Radial Mask */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+      
       {/* Content */}
-      <div className="relative z-20 text-center">
+      <div className="relative z-20 text-center flex flex-col items-center">
         <h1 className="inline-block pb-2 leading-tight text-3xl md:text-5xl lg:text-7xl font-bold tracking-tight bg-gradient-to-b from-neutral-200 to-neutral-500 bg-clip-text text-transparent"
         >
           Raj Bhargav Pentapati
@@ -45,6 +46,25 @@ const Mainscreen = () => {
           </a>
           <a href="https://www.geeksforgeeks.org/user/rajbhargavp/" target="_blank" rel="noopener noreferrer" className="icon-circle hover:text-blue-400 transition">
             <SiGeeksforgeeks />
+          </a>
+        </div>
+
+        <div className="mt-10">
+          <a 
+            href="https://drive.google.com/file/d/1kMt2j3i2GByT78Qsyu0YZwdin74cwhtU/view?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-base font-semibold leading-6 text-white inline-block"
+          >
+            <span className="absolute inset-0 overflow-hidden rounded-full">
+              <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            </span>
+
+            <div className="relative flex items-center z-10 rounded-full bg-zinc-950 py-2 px-8 ring-1 ring-white/10">
+              Resume
+            </div>
+
+            <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40" />
           </a>
         </div>
       </div>

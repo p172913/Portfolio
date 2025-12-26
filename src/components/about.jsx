@@ -31,10 +31,14 @@ const About = () => {
             About Me.
           </h1>
           <p className="text-lg leading-relaxed mb-4">
-            Software Engineer with expertise in Java, Python, Typescript, Spring Boot, React JS, and AWS. Proven experience in developing scalable applications, automating security scans, and optimizing system performance. Passionate about problem-solving, cloud technologies, and full-stack development. Seeking to contribute to a dynamic organization and drive technological innovation.
+          DevOps / Software Engineer with 3+ years of experience building cloud-native systems using Kubernetes, AWS, Docker, and CI/CD pipelines. With hands-on production experience in automation, security, and observability. Passionate about reliable systems, clean architecture, and continuous improvement.
           </p>
           <p className="text-lg leading-relaxed mb-4">
-            Contributed to the Kubernetes Python client by adding/enhancing functionality in PR#2372, PR#2390. Improved API usability and addressed key issues in the library. This involved writing Python functions to improve interaction with Kubernetes APIs and ensuring compatibility with existing features.
+          My work involves building production-ready pipelines, operating Kubernetes clusters, improving deployment reliability and observability directly into the software delivery lifecycle. 
+          </p>
+          <p className="text-lg leading-relaxed mb-4">
+          Active contributor to kubernetes-client/python, kubernetes/kubernetes, minikube, and kubernetes/dashboard. Resolved real-world production issues related to proxy/NO PROXY handling, WebSocket behavior, SSL contexts,
+          IPv6 binding, and Kubernetes client reliability.
           </p>
         </div>
       </div>

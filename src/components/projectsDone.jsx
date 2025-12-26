@@ -147,18 +147,6 @@ const ProjectsDone = () => {
                   className="filter invert hue-rotate-180" 
                 />
               </CardItem>
-              {/* <div className="flex justify-end items-center mt-6">
-                <CardItem
-                  translateZ={20}
-                  as="a"
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
-                >
-                  Live →
-                </CardItem>
-              </div> */}
             </CardBody>
           </CardContainer>
         ))}

@@ -9,13 +9,13 @@ const Navigationbar = () => {
 
   const links = [
     { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/skills', label: 'Skills' },
+    { path: '/experience', label: 'Experience'},
     { path: '/projects', label: 'Projects' },
     { path: '/opensource', label: 'OpenSource' },
-    { path: '/miniproject', label:'MiniProject'},
-    { path: '/contact', label: 'Contact' }
-    
+    { path: '/skills', label: 'Skills' },
+    { path: '/about', label: 'About' },
+    { path: '/contact', label: 'Contact' },
+    // { path: '/miniproject', label:'MiniProject'},
     
   ];
 

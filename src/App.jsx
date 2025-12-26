@@ -45,7 +45,8 @@ import Contact from './components/Contact'
 import MiniProjectsDone from './components/miniprojects'
 import OpenSource from './components/opensource'
 import Footer from './components/footer'
-import Skillset from './components/skillset'
+import SkillsDisplay from './components/skillset'
+import Experience from './components/experience'
 
 function App() {
   return (
@@ -54,12 +55,13 @@ function App() {
         <Navigationbar />
         <Routes>
           <Route path="/" element={<Mainscreen />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/experience" element={<Experience/>} />
           <Route path="/projects" element={<ProjectDone />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/skills" element={<Skillset />} />
-          <Route path="/miniproject" element={<MiniProjectsDone />} />
           <Route path="/opensource" element={<OpenSource />} />
+          <Route path="/skills" element={<SkillsDisplay />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/miniproject" element={<MiniProjectsDone />} />
         </Routes>
         <Footer />
       </div>
