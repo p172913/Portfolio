@@ -22,6 +22,7 @@ import {
   SiLinux,
   SiApachemaven,
   SiOpenjdk,
+  SiTerraform,
 } from "react-icons/si";
 import { FaAws, FaGithub, FaServer, FaShieldAlt, FaCogs, FaTerminal } from "react-icons/fa";
 import { TbApi } from "react-icons/tb";
@@ -36,39 +37,13 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 ========================= */
 
 const skills = [
-  {
-    category: "Programming Languages",
-    items: [
-      { name: "Java", icon: <SiOpenjdk /> },
-      { name: "Python", icon: <SiPython /> },
-      { name: "TypeScript", icon: <SiTypescript /> },
-      { name: "JavaScript", icon: <SiJavascript /> },
-      { name: "Bash", icon: <FaTerminal /> },
-    ],
-  },
-  {
-    category: "Back-End & APIs",
-    items: [
-      { name: "Spring Boot", icon: <SiSpringboot /> },
-      { name: "REST APIs", icon: <TbApi /> },
-      { name: "Microservices", icon: <FaServer /> },
-      { name: "Spring Cloud Config" },
-    ],
-  },
-  {
-    category: "Front-End (Working Knowledge)",
-    items: [
-      { name: "React JS", icon: <SiReact /> },
-      { name: "HTML", icon: <SiHtml5 /> },
-      { name: "CSS", icon: <SiCss3 /> },
-      { name: "React Native" },
-    ],
-  },
+  
   {
     category: "Cloud & Infrastructure",
     items: [
       { name: "AWS (EC2, S3, Lambda, SQS, IAM)", icon: <FaAws /> },
-      { name: "CloudFormation" },
+      { name: "AWS CloudFormation", icon: <FaAws /> },
+      { name: "Terraform", icon: <SiTerraform /> },
     ],
   },
   {
@@ -76,8 +51,7 @@ const skills = [
     items: [
       { name: "Docker", icon: <SiDocker /> },
       { name: "Kubernetes", icon: <SiKubernetes /> },
-      { name: "kubectl" },
-      { name: "K9s" },
+      { name: "kubectl", icon: <SiKubernetes /> },
     ],
   },
   {
@@ -90,11 +64,12 @@ const skills = [
     ],
   },
   {
-    category: "Databases & Caching",
+    category: "Programming Languages",
     items: [
-      { name: "PostgreSQL", icon: <SiPostgresql /> },
-      { name: "MySQL", icon: <SiMysql /> },
-      { name: "Redis", icon: <SiRedis /> },
+      { name: "Python", icon: <SiPython /> },
+      { name: "Bash", icon: <FaTerminal /> },
+      { name: "TypeScript", icon: <SiTypescript /> },
+      { name: "Java", icon: <SiOpenjdk /> },
     ],
   },
   {
@@ -103,6 +78,7 @@ const skills = [
       { name: "Prometheus", icon: <SiPrometheus /> },
       { name: "Grafana", icon: <SiGrafana /> },
       { name: "Sumo Logic" },
+      { name: "k9s", icon: <SiKubernetes /> },
     ],
   },
   {
@@ -110,6 +86,8 @@ const skills = [
     items: [
       { name: "OWASP ZAP", icon: <MdSecurity /> },
       { name: "WAF", icon: <FaShieldAlt /> },
+      { name: "Veracode", icon: <MdSecurity /> },
+      { name: "Qualys", icon: <FaShieldAlt /> },
     ],
   },
   {
@@ -120,6 +98,32 @@ const skills = [
       { name: "GitLab", icon: <SiGitlab /> },
       { name: "Linux", icon: <SiLinux /> },
       { name: "Maven", icon: <SiApachemaven /> },
+    ],
+  },
+  {
+    category: "Back-End & APIs",
+    items: [
+      { name: "Spring Boot", icon: <SiSpringboot /> },
+      { name: "REST APIs", icon: <TbApi /> },
+      { name: "Microservices", icon: <FaServer /> },
+      { name: "Spring Cloud Config", icon: <SiSpringboot /> },
+    ],
+  },
+  {
+    category: "Databases & Caching",
+    items: [
+      { name: "PostgreSQL", icon: <SiPostgresql /> },
+      { name: "MySQL", icon: <SiMysql /> },
+      { name: "Redis", icon: <SiRedis /> },
+    ],
+  },
+  {
+    category: "Front-End (Working Knowledge)",
+    items: [
+      { name: "React JS", icon: <SiReact /> },
+      { name: "HTML", icon: <SiHtml5 /> },
+      { name: "CSS", icon: <SiCss3 /> },
+      { name: "React Native", icon: <SiReact /> },
     ],
   },
 ];
@@ -193,9 +197,9 @@ const SkillsDisplay = () => {
       {/* <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"> */}
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start max-w-7xl mx-auto">
         {skills.map((group, index) => (
-          <CardContainer key={index} className="w-full py-0">
+          <CardContainer key={index} className="w-full" containerClassName="py-4">
             {/* <CardBody className="bg-black border border-white/[0.15] rounded-xl p-6 min-h-[8rem] hover:shadow-2xl hover:shadow-emerald-500/[0.08] transition"> */}
-            <CardBody className="bg-black relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] border-white/[0.2] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
+            <CardBody className="bg-black relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] border-white/[0.2] w-auto sm:w-[30rem] min-h-[14rem] h-auto rounded-xl p-6 border">
               <CardItem translateZ="40" className="text-lg font-semibold text-white mb-2">
                 {group.category}
               </CardItem>

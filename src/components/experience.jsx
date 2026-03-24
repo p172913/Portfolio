@@ -107,7 +107,7 @@ const Experience = () => {
       {/* Experience Cards */}
       <div className="relative z-10 flex flex-col gap-10 w-full max-w-6xl px-4">
         {experience.map((exp, index) => (
-            <CardContainer key={index} className="inter-var w-full">
+            <CardContainer key={index} className="inter-var w-full" containerClassName="py-4">
             <CardBody className="bg-black/50 backdrop-blur-sm border border-white/[0.1] w-full h-auto rounded-2xl p-6 md:p-10 hover:border-white/[0.2] transition-colors">
                 
                 {/* Header Section */}

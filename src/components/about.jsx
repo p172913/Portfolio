@@ -34,12 +34,16 @@ const About = () => {
           DevOps / Software Engineer with 3+ years of experience building cloud-native systems using Kubernetes, AWS, Docker, and CI/CD pipelines. With hands-on production experience in automation, security, and observability. Passionate about reliable systems, clean architecture, and continuous improvement.
           </p>
           <p className="text-lg leading-relaxed mb-4">
+          Garduated with B.Tech in Mechanical Engineering degree from National Institute of Technology Warangal (NITW) — 2018–2022.
+          </p>
+          <p className="text-lg leading-relaxed mb-4">
           My work involves building production-ready pipelines, operating Kubernetes clusters, improving deployment reliability and observability directly into the software delivery lifecycle. 
           </p>
           <p className="text-lg leading-relaxed mb-4">
-          Active contributor to kubernetes-client/python, kubernetes/kubernetes, minikube, and kubernetes/dashboard. Resolved real-world production issues related to proxy/NO PROXY handling, WebSocket behavior, SSL contexts,
+          Active contributor to kubernetes-client/python, kubernetes/kubernetes, minikube, kubernetes/dashboard and Kubestellar. Resolved real-world production issues related to proxy/NO PROXY handling, WebSocket behavior, SSL contexts,
           IPv6 binding, and Kubernetes client reliability.
           </p>
+          
         </div>
       </div>
     </section>

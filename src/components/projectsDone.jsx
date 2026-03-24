@@ -13,7 +13,18 @@ import Coverter from '../assets/ConverterApp.jpg';
 import Tradingbot from '../assets/Tradingbot.png';
 import SocilaMediaApp from '../assets/SocilaMediaApp.png'
 import BookStore from '../assets/BookStore.png'
+import SeQRTCLI from '../assets/SeQRTCLI.jpeg'
 const projects = [
+  {
+    title: "SecAuditHub — Security Auditing Platform",
+    description:
+      "Containerized CLI security auditing platform with automated scanners. Reduced vulnerability assessment time by 75%. Executed 40+ automated scans across container, network, and config layers.",
+    image: SeQRTCLI, // Security placeholder
+    metrics: "75% faster assessments · 40+ scans · CI automated",
+    github: "https://github.com/SeQRT-hub/SecureAuditCLI",
+    date: "Nov 2024 – Present",
+    stack: "TypeScript · Node.js · Docker · GitHub Actions"
+  },
   {
     title: "MathsGeeks",
     description:
@@ -29,20 +40,14 @@ const projects = [
   {
     title: "Converter",
     description:
-      "This is a modular, Python-based File Format Converter toolkit designed to handle a wide variety of file transformations commonly used in office, image, and document processing tasks. The project supports conversions between image, document, and spreadsheet formats, and is structured into dedicated micro-tools for ease of maintenance and reuse.",
+      "This is a modular, Python-based File Format Converter toolkit designed to handle a wide variety of file transformations commonly used in office, image, and document processing tasks.",
     image: Coverter,
   },
   {
     title: "Trading‑App",
     description:
-      "A cross‑platform trading assistant app for Android (and desktops), built using Python and the Kivy framework (KV language for UI). Designed to streamline intraday and portfolio-based trading workflows with a clean, intuitive interface.",
+      "A cross‑platform trading assistant app for Android (and desktops), built using Python and the Kivy framework (KV language for UI).",
     image: Tradingbot,
-  },
-  {
-    title: "SocialMediaApp",
-    description:
-      "A full-featured social media mobile application built with Python, HTML and CSS, delivering a modern and interactive social experience",
-    image: SocilaMediaApp,
   },
   {
     title: "BookStoreAPP",
@@ -50,8 +55,6 @@ const projects = [
       "A scalable, full‑stack Bookstore web application built entirely in TypeScript, providing a seamless shopping experience for book lovers.",
     image: BookStore,
   },
-  
-  
 ];
 
 const ProjectsDone = () => {
@@ -125,8 +128,8 @@ const ProjectsDone = () => {
       {/* Project Cards */}
       <div className="relative z-10 flex flex-wrap justify-center gap-8">
         {projects.map((project, index) => (
-          <CardContainer key={index} className="inter-var">
-            <CardBody className="bg-black relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] border-white/[0.2] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
+          <CardContainer key={index} className="inter-var" containerClassName="py-4">
+            <CardBody className="bg-black relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] border-white/[0.2] w-full sm:w-[35rem] min-h-[28rem] rounded-xl p-6 border">
               <CardItem
                 translateZ="50"
                 className="text-xl font-bold text-white"
