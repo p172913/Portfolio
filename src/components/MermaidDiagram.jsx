@@ -12,6 +12,9 @@ mermaid.initialize({
   logLevel: 'error'
 });
 
+// Global render queue to prevent concurrent Mermaid calls
+let renderQueue = Promise.resolve();
+
 const MermaidDiagram = ({ chart }) => {
   const [svgCode, setSvgCode] = useState('');
   const [error, setError] = useState(false);
@@ -20,31 +23,36 @@ const MermaidDiagram = ({ chart }) => {
   useEffect(() => {
     let isMounted = true;
 
-    const renderChart = async () => {
+    const queueRender = async () => {
       if (!chart) return;
 
-      try {
-        // Clear previous state
-        setError(false);
-        
-        // 1. Validate syntax
-        await mermaid.parse(chart);
-        
-        // 2. Render to SVG string
-        const { svg } = await mermaid.render(chartId.current, chart);
-        
-        if (isMounted) {
-          setSvgCode(svg);
+      // Add this render task to the global queue
+      renderQueue = renderQueue.then(async () => {
+        try {
+          if (!isMounted) return;
+
+          // Clear previous state
+          setError(false);
+          
+          // 1. Validate syntax
+          await mermaid.parse(chart);
+          
+          // 2. Render to SVG string
+          const { svg } = await mermaid.render(chartId.current, chart);
+          
+          if (isMounted) {
+            setSvgCode(svg);
+          }
+        } catch (err) {
+          console.error("Mermaid Render Error:", err);
+          if (isMounted) {
+            setError(true);
+          }
         }
-      } catch (err) {
-        console.error("Mermaid Render Error:", err);
-        if (isMounted) {
-          setError(true);
-        }
-      }
+      });
     };
 
-    renderChart();
+    queueRender();
 
     return () => {
       isMounted = false;
