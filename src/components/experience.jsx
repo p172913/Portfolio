@@ -11,9 +11,9 @@ const experience = [
     company: "Infor",
     duration: "Jul 2023 – Present",
     highlights: [
-      "Designed and operated AWS-based CI/CD pipelines using Jenkins, Docker, and Kubernetes, reducing deployment time by ~50% (from ~48 minutes to under 25 minutes).",
-      "Embedded automated security scanning (OWASP ZAP, WAF) directly into CI pipelines, cutting manual security audit effort by ~90% and enabling early vulnerability detection.",
-      "Built Python-based post-deployment validation and health-check tools, reducing manual verification effort by 60% and improving release confidence.",
+      "Designed and operated AWS-based CI/CD pipelines using Jenkins, Docker, and Kubernetes, reducing deployment time by <strong>~50%</strong> (from <strong>~48 minutes</strong> to <strong>under 25 minutes</strong>).",
+      "Embedded automated security scanning (OWASP ZAP, WAF) directly into CI pipelines, cutting manual security audit effort by <strong>~90%</strong> and enabling early vulnerability detection.",
+      "Built Python-based post-deployment validation and health-check tools, reducing manual verification effort by <strong>60%</strong> and improving release confidence.",
       "Operated and maintained Kubernetes clusters, managing deployments, rollouts, scaling, and failure handling for highly available production workloads.",
       "Implemented centralized logging and observability using Sumo Logic, improving incident detection and reducing MTTR.",
       "Collaborated closely with backend teams to improve release reliability, rollback strategies, and operational readiness.",
@@ -26,9 +26,9 @@ const experience = [
     company: "Alverto Solutions",
     duration: "Nov 2022 – Jul 2023",
     highlights: [
-      "Contributed to migrating monolithic components to microservices, improving scalability and resource utilization by ~50%.",
+      "Contributed to migrating monolithic components to microservices, improving scalability and resource utilization by <strong>~50%</strong>.",
       "Integrated Spring Cloud Config for centralized and dynamic configuration management, significantly reducing deployment-related downtime.",
-      "Optimized PostgreSQL queries through indexing and query refactoring, improving performance by ~45% for high-traffic workloads.",
+      "Optimized PostgreSQL queries through indexing and query refactoring, improving performance by <strong>~45%</strong> for high-traffic workloads.",
       "Collaborated with frontend teams to integrate backend APIs with React-based UI components.",
     ],
     tech: "Java · Spring Boot · PostgreSQL · React · GitHub",
@@ -137,7 +137,7 @@ const Experience = () => {
                     {exp.highlights.map((point, i) => (
                     <li key={i} className="flex items-start gap-3">
                         <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-neutral-500 shrink-0" />
-                        <span className="leading-relaxed">{point}</span>
+                        <span className="leading-relaxed" dangerouslySetInnerHTML={{ __html: point }}></span>
                     </li>
                     ))}
                 </ul>

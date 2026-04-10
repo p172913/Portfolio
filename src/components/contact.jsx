@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { cn } from "../lib/utils";
 import { HoverBorderGradient } from "./ui/hover-border-gradient";
 import emailjs from "emailjs-com";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Contact = () => {
   const formRef = useRef(null); 
@@ -71,9 +72,8 @@ const Contact = () => {
           <input
             type="email"
             name="email"
-            placeholder="Email (must be Gmail)"
+            placeholder="Email"
             required
-            pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$"
             className="w-full rounded-md bg-black/40 px-4 py-2 text-white placeholder-neutral-400 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-white/20"
           />
           <textarea
@@ -83,8 +83,17 @@ const Contact = () => {
             rows={4}
             className="w-full rounded-md bg-black/40 px-4 py-2 text-white placeholder-neutral-400 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-white/20"
           />
+          
+          <div className="mt-8 flex justify-center items-center gap-6">
+            <div className="flex gap-6 text-3xl text-neutral-400">
+              <a href="https://github.com/p172913" target="_blank" rel="noopener noreferrer" className="hover:text-white transition hover:-translate-y-1 hover:scale-110 duration-300" title="GitHub" aria-label="GitHub">
+                <FaGithub />
+              </a>
+              <a href="https://www.linkedin.com/in/rajbhargav-pentapati-0a6148237/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition hover:-translate-y-1 hover:scale-110 duration-300" title="LinkedIn" aria-label="LinkedIn">
+                <FaLinkedin />
+              </a>
+            </div>
 
-          <div className="mt-6 flex justify-center">
             <HoverBorderGradient
               containerClassName="rounded-full"
               as="button"
@@ -102,6 +111,7 @@ const Contact = () => {
             </p>
           )}
         </form>
+
       </div>
     </section>
   );

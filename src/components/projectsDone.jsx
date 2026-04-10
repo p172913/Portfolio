@@ -23,37 +23,48 @@ const projects = [
     metrics: "75% faster assessments · 40+ scans · CI automated",
     github: "https://github.com/SeQRT-hub/SecureAuditCLI",
     date: "Nov 2024 – Present",
-    stack: "TypeScript · Node.js · Docker · GitHub Actions"
+    stack: "TypeScript · Node.js · Docker · GitHub Actions",
+    architecturePlaceholder: true
   },
   {
     title: "MathsGeeks",
     description:
       "An AI-powered mathematics learning platform designed for personalized, engaging, and accessible learning.",
     image: MathsGeekImg,
+    metrics: "AI Personalized · Adaptive Learning",
+    architecturePlaceholder: true
   },
   {
     title: "Digisafe Vault App",
     description:
       "A secure digital vault for personal data protection, emphasizing privacy and user control.",
     image: Digisafe,
+    metrics: "End-to-End Encryption · Vault Controls · Zero-Knowledge",
+    architecturePlaceholder: true
   },
   {
     title: "Converter",
     description:
       "This is a modular, Python-based File Format Converter toolkit designed to handle a wide variety of file transformations commonly used in office, image, and document processing tasks.",
     image: Coverter,
+    metrics: "Modular Toolkit · Multi-format Support · Batch Processing",
+    architecturePlaceholder: true
   },
   {
     title: "Trading‑App",
     description:
       "A cross‑platform trading assistant app for Android (and desktops), built using Python and the Kivy framework (KV language for UI).",
     image: Tradingbot,
+    metrics: "Cross-Platform Android/PC · Real-Time Stats · Kivy UI",
+    architecturePlaceholder: true
   },
   {
     title: "BookStoreAPP",
     description:
       "A scalable, full‑stack Bookstore web application built entirely in TypeScript, providing a seamless shopping experience for book lovers.",
     image: BookStore,
+    metrics: "Full-Stack TypeScript · Scalable Arch · Secure Auth",
+    architecturePlaceholder: true
   },
 ];
 
@@ -128,26 +139,41 @@ const ProjectsDone = () => {
       {/* Project Cards */}
       <div className="relative z-10 flex flex-wrap justify-center gap-8">
         {projects.map((project, index) => (
-          <CardContainer key={index} className="inter-var" containerClassName="py-4">
-            <CardBody className="bg-black relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] border-white/[0.2] w-full sm:w-[35rem] min-h-[28rem] rounded-xl p-6 border">
-              <CardItem
-                translateZ="50"
-                className="text-xl font-bold text-white"
+          <CardContainer key={index} className="inter-var h-full" containerClassName="py-4 h-full">
+            <CardBody className="bg-black relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] border-white/[0.2] w-full sm:w-[35rem] h-auto min-h-[38rem] flex flex-col rounded-xl p-6 border">
+              <div className="flex-grow">
+                <CardItem
+                  translateZ="50"
+                  className="text-xl font-bold text-white"
               >
                 {project.title}
               </CardItem>
               <CardItem
                 as="p"
                 translateZ="60"
-                className="text-neutral-300 text-sm max-w-sm mt-2"
-              >
-                {project.description}
-              </CardItem>
-              <CardItem translateZ="100" className="w-full mt-4">
+                className="text-neutral-300 text-sm max-w-sm mt-2 font-light leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: project.description }}
+              />
+              {project.metrics && (
+                <CardItem translateZ="65" className="text-emerald-400 text-xs font-semibold mt-2">
+                  {project.metrics}
+                </CardItem>
+              )}
+              {project.architecturePlaceholder && (
+                <CardItem translateZ="70" className="w-full mt-4 flex items-center justify-center border border-dashed border-neutral-700/50 rounded-lg p-4 bg-neutral-900/30">
+                  <div className="flex flex-col items-center gap-2 opacity-60">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-git-merge"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/></svg>
+                    <span className="text-xs font-mono text-center">Architecture Diagram Placeholder</span>
+                    <span className="text-[10px] text-neutral-500 max-w-[200px] text-center">Insert Excalidraw/Mermaid diagram image here</span>
+                  </div>
+                </CardItem>
+              )}
+              </div>
+              <CardItem translateZ="100" className="w-full mt-auto pt-4">
                 <ProjectImage
                   image={project.image}
                   alt={project.title}
-                  className="filter invert hue-rotate-180" 
+                  className="filter invert hue-rotate-180 rounded-lg shadow-xl" 
                 />
               </CardItem>
             </CardBody>
