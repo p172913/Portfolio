@@ -51,7 +51,7 @@ import Experience from './components/experience'
 function App() {
   return (
     <main>
-      <div className="bg-white dark:bg-black">
+      <div className="bg-white dark:bg-black pt-[4.5rem]">
         <Navigationbar />
         <Routes>
           <Route path="/" element={<Mainscreen />} />

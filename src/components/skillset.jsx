@@ -206,11 +206,11 @@ const SkillsDisplay = () => {
   }, []);
 
   return (
-    <div className="relative w-full py-20 px-4 bg-black">
+    <div className="relative w-full py-12 md:py-20 px-4 bg-black overflow-hidden">
       {/* Scroll Progress */}
       <div
         ref={scrollLineRef}
-        className="fixed top-0 left-0 h-[3px] bg-gradient-to-b from-neutral-200 to-neutral-500 w-0 z-50"
+        className="fixed top-0 left-0 h-[3px] bg-gradient-to-b from-neutral-200 to-neutral-500 w-0 z-[110]"
       />
 
       {/* Background Grid */}
@@ -226,31 +226,30 @@ const SkillsDisplay = () => {
       <div className="pointer-events-none absolute inset-0 bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
 
       {/* Header */}
-      <div className="relative z-10 mb-12 text-center">
-        <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-b from-neutral-200 to-neutral-500 bg-clip-text text-transparent">
+      <div className="relative z-10 mb-8 md:mb-12 text-center w-full max-w-2xl mx-auto">
+        <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-b from-neutral-200 to-neutral-500 bg-clip-text text-transparent px-2">
           Skills and Tools
         </h2>
-        <p className="mt-4 text-neutral-400 text-sm md:text-base max-w-xl mx-auto">
+        <p className="mt-4 text-neutral-400 text-sm md:text-base px-2">
           From backend systems to cloud-native infrastructure — tools I use in production.
         </p>
       </div>
 
       {/* Cards */}
-      {/* <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"> */}
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start max-w-7xl mx-auto">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 items-start max-w-7xl mx-auto w-full">
         {skills.map((group, index) => (
-          <CardContainer key={index} className="w-full" containerClassName="py-4 h-full">
-            <CardBody className="bg-black relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] border-white/[0.2] w-auto sm:w-[30rem] min-h-[14rem] h-auto rounded-xl p-6 border flex flex-col items-start">
-              <CardItem translateZ="40" className="text-lg font-semibold text-white mb-2">
+          <CardContainer key={index} className="w-full" containerClassName="py-2 md:py-4">
+            <CardBody className="bg-black relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] border-white/[0.2] w-full min-h-[10rem] md:min-h-[14rem] h-auto rounded-xl p-4 md:p-6 border flex flex-col items-start translate-z-0">
+              <CardItem translateZ="40" className="text-base md:text-lg font-semibold text-white mb-3 md:mb-2">
                 {group.category}
               </CardItem>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 w-full">
                 {group.items.map((item, i) => (
                   <CardItem
                     key={i}
                     translateZ="20"
-                    className="flex items-center gap-2 text-sm text-neutral-300 bg-zinc-800 px-3 py-1.5 rounded-full hover:bg-zinc-700 transition"
+                    className="flex items-center gap-2 text-xs md:text-sm text-neutral-300 bg-zinc-800/50 px-3 py-1.5 rounded-full hover:bg-zinc-700 transition border border-white/5"
                   >
                     {item.link ? (
                       <a href={item.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-inherit no-underline pr-1">

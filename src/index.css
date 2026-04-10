@@ -12,17 +12,15 @@
   padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
-  height: 4rem;
+  height: 4.5rem;
   color: whitesmoke;
   background-color: black; 
 }
 
 #nav-div {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   gap: 1.5rem;
+  align-items: center;
 }
 
 .nav-a {
@@ -179,6 +177,13 @@
   }
 }
 
+/* MOBILE RESPONSIVE TWEAKS */
+@media screen and (max-width: 768px) {
+  .coming-soon-text {
+    font-size: 3rem !important;
+  }
+}
+
 /* Skills Styling Starts*/
 
 /* Skills Styling Ends*/
@@ -229,6 +234,8 @@ html, body {
   margin: 0;
   padding: 0;
   color: whitesmoke; 
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* For hiding scroll bar*/

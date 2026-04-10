@@ -145,11 +145,11 @@ const ProjectsDone = () => {
 
   return (
     
-    <div className="relative flex flex-col items-center justify-center w-full py-20 px-4 bg-black">
+    <div className="relative flex flex-col items-center justify-center w-full py-12 md:py-20 px-4 bg-black overflow-hidden">
       
       <div
         ref={scrollLineRef}
-        className="fixed top-0 left-0 h-[3px] bg-gradient-to-b from-neutral-200 to-neutral-500 w-0 z-50"
+        className="fixed top-0 left-0 h-[3px] bg-gradient-to-b from-neutral-200 to-neutral-500 w-0 z-[110]"
       ></div>
 
       {/* Dot Background Layer */}
@@ -165,57 +165,58 @@ const ProjectsDone = () => {
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
 
       {/* Section Title */}
-      <div className="relative z-10 mb-12 text-center">
+      <div className="relative z-10 mb-8 md:mb-12 text-center w-full max-w-2xl">
         <h2 className="inline-block pb-2 text-3xl md:text-5xl font-bold bg-gradient-to-b from-neutral-200 to-neutral-500 bg-clip-text text-transparent">
           Projects I worked on
         </h2>
-        <p className="mt-4 text-neutral-400 text-sm md:text-base max-w-xl mx-auto">
+        <p className="mt-4 text-neutral-400 text-sm md:text-base px-2">
           Exploring new ideas, building app and here’s what I’ve built so far.
         </p>
       </div>
 
       {/* Project Cards */}
-      <div className="relative z-10 flex flex-wrap justify-center gap-8">
+      <div className="relative z-10 flex flex-wrap justify-center gap-6 md:gap-8 w-full">
         {projects.map((project, index) => (
-          <CardContainer key={index} className="inter-var h-full" containerClassName="py-4 h-full">
-            <CardBody className="bg-black relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] border-white/[0.2] w-full sm:w-[35rem] h-auto min-h-[38rem] flex flex-col rounded-xl p-6 border">
+          <CardContainer key={index} className="inter-var w-full max-w-[35rem]" containerClassName="py-4 md:py-8">
+            <CardBody className="bg-black relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] border-white/[0.2] w-full h-auto min-h-[30rem] md:min-h-[38rem] flex flex-col rounded-xl p-4 md:p-6 border">
               <div className="flex-grow">
                 <CardItem
                   translateZ="50"
-                  className="text-xl font-bold text-white"
+                  className="text-lg md:text-xl font-bold text-white"
               >
                 {project.title}
               </CardItem>
               <CardItem
                 as="p"
                 translateZ="60"
-                className="text-neutral-300 text-sm max-w-sm mt-2 font-light leading-relaxed"
+                className="text-neutral-300 text-xs md:text-sm max-w-sm mt-2 font-light leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: project.description }}
               />
               {project.metrics && (
-                <CardItem translateZ="65" className="text-emerald-400 text-xs font-semibold mt-2">
+                <CardItem translateZ="65" className="text-emerald-400 text-[10px] md:text-xs font-semibold mt-2">
                   {project.metrics}
                 </CardItem>
               )}
               {project.architectureCode ? (
-                <CardItem translateZ="70" className="w-full mt-4 p-4 rounded-xl bg-neutral-900 border border-neutral-800">
-                  <MermaidDiagram chart={project.architectureCode} />
+                <CardItem translateZ="70" className="w-full mt-4 p-2 md:p-4 rounded-xl bg-neutral-900 border border-neutral-800 overflow-hidden">
+                  <div className="w-full overflow-x-auto scrolling-touch">
+                    <MermaidDiagram chart={project.architectureCode} />
+                  </div>
                 </CardItem>
               ) : project.architecturePlaceholder && (
                 <CardItem translateZ="70" className="w-full mt-4 flex items-center justify-center border border-dashed border-neutral-700/50 rounded-lg p-4 bg-neutral-900/30">
                   <div className="flex flex-col items-center gap-2 opacity-60">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-git-merge"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/></svg>
-                    <span className="text-xs font-mono text-center">Architecture Diagram Placeholder</span>
-                    <span className="text-[10px] text-neutral-500 max-w-[200px] text-center">No architecture mapped yet</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-git-merge"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/></svg>
+                    <span className="text-[10px] font-mono text-center">Architecture Diagram Placeholder</span>
                   </div>
                 </CardItem>
               )}
               </div>
-              <CardItem translateZ="100" className="w-full mt-auto pt-4">
+              <CardItem translateZ="100" className="w-full mt-auto pt-6 md:pt-4">
                 <ProjectImage
                   image={project.image}
                   alt={project.title}
-                  className="filter invert hue-rotate-180 rounded-lg shadow-xl" 
+                  className="filter invert hue-rotate-180 rounded-lg shadow-xl w-full object-cover" 
                 />
               </CardItem>
             </CardBody>
