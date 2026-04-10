@@ -7,6 +7,7 @@ import { useEffect,useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ProjectImage from "./utils/ProjectImage";
+import MermaidDiagram from "./MermaidDiagram";
 import MathsGeekImg from '../assets/MathsGeek.jpg';
 import Digisafe from '../assets/Digisafe.png';
 import Coverter from '../assets/ConverterApp.jpg';
@@ -24,6 +25,13 @@ const projects = [
     github: "https://github.com/SeQRT-hub/SecureAuditCLI",
     date: "Nov 2024 – Present",
     stack: "TypeScript · Node.js · Docker · GitHub Actions",
+    architectureCode: `flowchart TD
+    A[DevSecOps User / CI Pipeline] -->|CLI Commands| B(SecAuditHub Core Engine)
+    B -->|Plugin Execution| C{Security Scanner Modules}
+    C -.->|Static Analysis| D[Trivy / CodeQL / Semgrep]
+    C -.->|Web & Cloud| E[ZAP / Checkov / AWS]
+    D & E -->|Raw Data| B
+    B -->|Normalize & Aggregate| F[Unified Audit Report]`,
     architecturePlaceholder: true
   },
   {
@@ -32,6 +40,12 @@ const projects = [
       "An AI-powered mathematics learning platform designed for personalized, engaging, and accessible learning.",
     image: MathsGeekImg,
     metrics: "AI Personalized · Adaptive Learning",
+    architectureCode: `flowchart TD
+    A[React Web Client] & B[React Native App] -->|Authentication| C(Firebase Auth)
+    A & B -->|REST API| D{Spring Boot Backend}
+    D -->|Persistent Session| E[(H2 Database)]
+    D -->|Math Solver| F[AI Engine & Mermaid Parsing]
+    F -.->|Step-by-step UI| D`,
     architecturePlaceholder: true
   },
   {
@@ -40,6 +54,12 @@ const projects = [
       "A secure digital vault for personal data protection, emphasizing privacy and user control.",
     image: Digisafe,
     metrics: "End-to-End Encryption · Vault Controls · Zero-Knowledge",
+    architectureCode: `flowchart TD
+    A[User Client App] -->|AES-256 Encrypt & Hash| B{API Access Gateway}
+    B -->|Store Encrypted Blob| C[(Secure Blob Storage)]
+    B -->|Index Tags| D[Search & Index Service]
+    D <-->|Metadata Query| E[(Encrypted NoSQL DB)]
+    C -.->|Retrieval & Decrypt| A`,
     architecturePlaceholder: true
   },
   {
@@ -48,6 +68,11 @@ const projects = [
       "This is a modular, Python-based File Format Converter toolkit designed to handle a wide variety of file transformations commonly used in office, image, and document processing tasks.",
     image: Coverter,
     metrics: "Modular Toolkit · Multi-format Support · Batch Processing",
+    architectureCode: `flowchart TD
+    A[React Client] -->|Axios POST multipart| B(FastAPI Router)
+    B -->|Process Upload| C{Pillow Engine}
+    C -->|Format & Resize| D[(uploads/ Storage)]
+    D -.->|Download URL| A`,
     architecturePlaceholder: true
   },
   {
@@ -56,6 +81,12 @@ const projects = [
       "A cross‑platform trading assistant app for Android (and desktops), built using Python and the Kivy framework (KV language for UI).",
     image: Tradingbot,
     metrics: "Cross-Platform Android/PC · Real-Time Stats · Kivy UI",
+    architectureCode: `flowchart TD
+    E[GetToken Script] -->|OAuth Login| F(Pickled Session)
+    F -.->|Loaded by| A
+    A[Kivy GUI App] -->|Place/Modify Orders| B{AliceBlue API Client}
+    B <-->|REST & WSS Streams| C[Alice Blue Broker Trading Engine]
+    A -->|Persist Open/Closed Trades| D[(RethinkDB)]`,
     architecturePlaceholder: true
   },
   {
@@ -64,6 +95,13 @@ const projects = [
       "A scalable, full‑stack Bookstore web application built entirely in TypeScript, providing a seamless shopping experience for book lovers.",
     image: BookStore,
     metrics: "Full-Stack TypeScript · Scalable Arch · Secure Auth",
+    architectureCode: `flowchart TD
+    A[Web Browser] -->|Navigation| B{Angular 5 Router & Auth Guard}
+    B -->|Protected| C[Add/Edit UI via Angular Material]
+    B -->|Public| D[Catalog & Search via ng2-search-filter]
+    C & D -->|Dependency Injection| E(Bookstore Data Service)
+    B -->|Validation| F[Auth Service]
+    E -.->|Data Fetching| G[(Remote API / State)]`,
     architecturePlaceholder: true
   },
 ];
@@ -159,12 +197,16 @@ const ProjectsDone = () => {
                   {project.metrics}
                 </CardItem>
               )}
-              {project.architecturePlaceholder && (
+              {project.architectureCode ? (
+                <CardItem translateZ="70" className="w-full mt-4 p-4 rounded-xl bg-neutral-900 border border-neutral-800">
+                  <MermaidDiagram chart={project.architectureCode} />
+                </CardItem>
+              ) : project.architecturePlaceholder && (
                 <CardItem translateZ="70" className="w-full mt-4 flex items-center justify-center border border-dashed border-neutral-700/50 rounded-lg p-4 bg-neutral-900/30">
                   <div className="flex flex-col items-center gap-2 opacity-60">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-git-merge"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/></svg>
                     <span className="text-xs font-mono text-center">Architecture Diagram Placeholder</span>
-                    <span className="text-[10px] text-neutral-500 max-w-[200px] text-center">Insert Excalidraw/Mermaid diagram image here</span>
+                    <span className="text-[10px] text-neutral-500 max-w-[200px] text-center">No architecture mapped yet</span>
                   </div>
                 </CardItem>
               )}
