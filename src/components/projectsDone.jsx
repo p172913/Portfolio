@@ -26,12 +26,12 @@ const projects = [
     date: "Nov 2024 – Present",
     stack: "TypeScript · Node.js · Docker · GitHub Actions",
     architectureCode: `flowchart TD
-    A["DevSecOps User"] -->|CLI Commands| B["SecAuditHub Engine"]
-    B -->|Plugin Exec| C{"Scanner Modules"}
-    C -.->|Static Analysis| D["Trivy / CodeQL / Semgrep"]
-    C -.->|Web Scan| E["ZAP / Checkov / AWS"]
-    D -->|Raw Data| F["Unified Audit Report"]
-    E -->|Raw Data| F`,
+A[DevSecOps User] -->|CLI Commands| B[SecAuditHub Engine]
+B -->|Plugin Exec| C{Scanner Modules}
+C -.-> D[Trivy - CodeQL - Semgrep]
+C -.-> E[ZAP - Checkov - AWS]
+D --> F[Unified Audit Report]
+E --> F`,
     architecturePlaceholder: true
   },
   {
@@ -41,13 +41,13 @@ const projects = [
     image: MathsGeekImg,
     metrics: "AI Personalized · Adaptive Learning",
     architectureCode: `flowchart TD
-    A["React Web"] -->|Auth| C["Firebase Auth"]
-    B["React Native"] -->|Auth| C
-    A -->|REST API| D{"Spring Boot Backend"}
-    B -->|REST API| D
-    D -->|Persist| E[("H2 Database")]
-    D -->|Solve| F["AI Math Engine"]
-    F -.->|Solution| D`,
+A[React Web] -->|Auth| C[Firebase Auth]
+B[React Native] -->|Auth| C
+A -->|REST API| D{Spring Boot}
+B -->|REST API| D
+D --> E[(H2 Database)]
+D --> F[AI Math Engine]
+F -.->|Solution| D`,
     architecturePlaceholder: true
   },
   {
@@ -57,11 +57,11 @@ const projects = [
     image: Digisafe,
     metrics: "End-to-End Encryption · Vault Controls · Zero-Knowledge",
     architectureCode: `flowchart TD
-    A["User Client App"] -->|AES-256 Encrypt| B{"API Gateway"}
-    B -->|Store Blob| C[("Secure Blob Storage")]
-    B -->|Index Tags| D["Search Service"]
-    D -->|Metadata Query| E[("Encrypted NoSQL DB")]
-    C -.->|Decrypt and Retrieve| A`,
+A[User Client] -->|AES-256 Encrypt| B{API Gateway}
+B -->|Store Blob| C[(Blob Storage)]
+B -->|Index Tags| D[Search Service]
+D --> E[(NoSQL DB)]
+C -.->|Decrypt| A`,
     architecturePlaceholder: true
   },
   {
@@ -71,10 +71,10 @@ const projects = [
     image: Coverter,
     metrics: "Modular Toolkit · Multi-format Support · Batch Processing",
     architectureCode: `flowchart TD
-    A["React Client"] -->|Axios POST| B["FastAPI Router"]
-    B -->|Process Upload| C{"Pillow Engine"}
-    C -->|Format and Resize| D[("uploads/ Storage")]
-    D -.->|Download URL| A`,
+A[React Client] -->|Axios POST| B[FastAPI Router]
+B -->|Process Upload| C{Pillow Engine}
+C -->|Convert| D[(Uploads Storage)]
+D -.->|Download URL| A`,
     architecturePlaceholder: true
   },
   {
@@ -84,11 +84,11 @@ const projects = [
     image: Tradingbot,
     metrics: "Cross-Platform Android/PC · Real-Time Stats · Kivy UI",
     architectureCode: `flowchart TD
-    E["GetToken Script"] -->|OAuth Login| F["Pickled Session"]
-    F -.->|Loaded by| A
-    A["Kivy GUI App"] -->|Place Orders| B{"AliceBlue API Client"}
-    B -->|REST and WSS| C["Alice Blue Broker"]
-    A -->|Persist Trades| D[("RethinkDB")]`,
+E[GetToken Script] -->|OAuth Login| F[Pickled Session]
+F -.->|Loaded by| A
+A[Kivy GUI App] -->|Place Orders| B{AliceBlue API}
+B -->|REST and WSS| C[Alice Blue Broker]
+A -->|Persist Trades| D[(RethinkDB)]`,
     architecturePlaceholder: true
   },
   {
@@ -98,13 +98,13 @@ const projects = [
     image: BookStore,
     metrics: "Full-Stack TypeScript · Scalable Arch · Secure Auth",
     architectureCode: `flowchart TD
-    A["Web Browser"] -->|Navigate| B{"Angular Router and Guard"}
-    B -->|Protected| C["Add/Edit Book UI"]
-    B -->|Public| D["Catalog and Search"]
-    C -->|Inject| E["Bookstore Service"]
-    D -->|Inject| E
-    B -->|Validate| F["Auth Service"]
-    E -.->|Fetch Data| G[("Remote API")]`,
+A[Web Browser] -->|Navigate| B{Angular Router}
+B -->|Protected| C[Add - Edit Book UI]
+B -->|Public| D[Catalog - Search]
+C --> E[Bookstore Service]
+D --> E
+B -->|Validate| F[Auth Service]
+E -.->|Fetch| G[(Remote API)]`,
     architecturePlaceholder: true
   },
 ];

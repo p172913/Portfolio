@@ -1,93 +1,78 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useId } from 'react';
 import mermaid from 'mermaid';
-import { motion, AnimatePresence } from 'framer-motion';
-let chartCount = 0;
 
 mermaid.initialize({
   startOnLoad: false,
   theme: 'dark',
   securityLevel: 'loose',
   fontFamily: 'monospace',
-  useMaxWidth: true,
-  logLevel: 'error'
+  suppressErrorRendering: true,
 });
-
-// Global render queue to prevent concurrent Mermaid calls
-let renderQueue = Promise.resolve();
 
 const MermaidDiagram = ({ chart }) => {
   const [svgCode, setSvgCode] = useState('');
   const [error, setError] = useState(false);
-  const chartId = useRef(`mermaid-chart-${++chartCount}`);
+  const reactId = useId();
+  // Create a DOM-safe ID (remove colons from React's useId)
+  const safeId = `mermaid-${reactId.replace(/:/g, '-')}`;
 
   useEffect(() => {
-    let isMounted = true;
+    let cancelled = false;
 
-    const queueRender = async () => {
+    const renderChart = async () => {
       if (!chart) return;
 
-      // Add this render task to the global queue
-      renderQueue = renderQueue.then(async () => {
-        try {
-          if (!isMounted) return;
+      try {
+        setError(false);
+        setSvgCode('');
 
-          // Clear previous state
-          setError(false);
-          
-          // 1. Validate syntax
-          await mermaid.parse(chart);
-          
-          // 2. Render to SVG string
-          const { svg } = await mermaid.render(chartId.current, chart);
-          
-          if (isMounted) {
-            setSvgCode(svg);
-          }
-        } catch (err) {
-          console.error("Mermaid Render Error:", err);
-          if (isMounted) {
-            setError(true);
-          }
+        // Clean up the chart string: trim each line to remove template literal indentation
+        const cleanedChart = chart
+          .split('\n')
+          .map(line => line.trim())
+          .filter(line => line.length > 0)
+          .join('\n');
+
+        // Remove any leftover container from a previous render
+        const oldEl = document.getElementById(safeId);
+        if (oldEl) oldEl.remove();
+
+        const { svg } = await mermaid.render(safeId, cleanedChart);
+
+        if (!cancelled) {
+          setSvgCode(svg);
         }
-      });
+      } catch (err) {
+        console.error('Mermaid render error for', safeId, ':', err);
+        if (!cancelled) {
+          setError(true);
+        }
+      }
     };
 
-    queueRender();
+    // Small delay to avoid race conditions between multiple diagrams
+    const timer = setTimeout(renderChart, 100);
 
     return () => {
-      isMounted = false;
+      cancelled = true;
+      clearTimeout(timer);
     };
-  }, [chart]);
+  }, [chart, safeId]);
 
   return (
-    <div className="w-full min-h-[120px] flex items-center justify-center bg-transparent overflow-x-auto custom-scrollbar scrolling-touch">
-      <AnimatePresence mode="wait">
-        {error ? (
-          <motion.div 
-            key="error"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="flex flex-col items-center gap-2 py-8 text-neutral-500"
-          >
-            <span className="text-xs font-mono">Syntax Error in Diagram</span>
-          </motion.div>
-        ) : svgCode ? (
-          <motion.div
-            key="svg"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="w-full flex justify-start md:justify-center"
-            dangerouslySetInnerHTML={{ __html: svgCode }}
-          />
-        ) : (
-          <motion.div 
-            key="loading"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="w-4 h-4 border-2 border-neutral-700 border-t-emerald-500 rounded-full animate-spin"
-          />
-        )}
-      </AnimatePresence>
+    <div className="w-full min-h-[120px] flex items-center justify-center bg-transparent overflow-x-auto">
+      {error ? (
+        <div className="flex flex-col items-center gap-2 py-8 text-neutral-500">
+          <span className="text-xs font-mono">Diagram unavailable</span>
+        </div>
+      ) : svgCode ? (
+        <div
+          className="w-full flex justify-center [&_svg]:max-w-full"
+          dangerouslySetInnerHTML={{ __html: svgCode }}
+        />
+      ) : (
+        <div className="w-4 h-4 border-2 border-neutral-700 border-t-emerald-500 rounded-full animate-spin" />
+      )}
     </div>
   );
 };
