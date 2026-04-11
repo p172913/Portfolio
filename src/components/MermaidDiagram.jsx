@@ -1,78 +1,37 @@
-import React, { useState, useEffect, useId } from 'react';
-import mermaid from 'mermaid';
+import React, { useState } from 'react';
 
-mermaid.initialize({
-  startOnLoad: false,
-  theme: 'dark',
-  securityLevel: 'loose',
-  fontFamily: 'monospace',
-  suppressErrorRendering: true,
-});
-
+/**
+ * Renders Mermaid diagrams as SVG images via the free mermaid.ink service.
+ * This avoids all Mermaid dynamic import / code-splitting issues on GitHub Pages.
+ */
 const MermaidDiagram = ({ chart }) => {
-  const [svgCode, setSvgCode] = useState('');
   const [error, setError] = useState(false);
-  const reactId = useId();
-  // Create a DOM-safe ID (remove colons from React's useId)
-  const safeId = `mermaid-${reactId.replace(/:/g, '-')}`;
 
-  useEffect(() => {
-    let cancelled = false;
+  if (!chart) return null;
 
-    const renderChart = async () => {
-      if (!chart) return;
+  // Prepend dark theme config, then base64 encode for the mermaid.ink URL
+  const themedChart = `%%{init: {'theme': 'dark', 'themeVariables': {'primaryColor': '#1a1a2e', 'primaryTextColor': '#e0e0e0', 'lineColor': '#10b981', 'secondaryColor': '#16213e'}}}%%\n${chart}`;
+  const encoded = btoa(unescape(encodeURIComponent(themedChart)));
+  const svgUrl = `https://mermaid.ink/svg/${encoded}`;
 
-      try {
-        setError(false);
-        setSvgCode('');
-
-        // Clean up the chart string: trim each line to remove template literal indentation
-        const cleanedChart = chart
-          .split('\n')
-          .map(line => line.trim())
-          .filter(line => line.length > 0)
-          .join('\n');
-
-        // Remove any leftover container from a previous render
-        const oldEl = document.getElementById(safeId);
-        if (oldEl) oldEl.remove();
-
-        const { svg } = await mermaid.render(safeId, cleanedChart);
-
-        if (!cancelled) {
-          setSvgCode(svg);
-        }
-      } catch (err) {
-        console.error('Mermaid render error for', safeId, ':', err);
-        if (!cancelled) {
-          setError(true);
-        }
-      }
-    };
-
-    // Small delay to avoid race conditions between multiple diagrams
-    const timer = setTimeout(renderChart, 100);
-
-    return () => {
-      cancelled = true;
-      clearTimeout(timer);
-    };
-  }, [chart, safeId]);
+  if (error) {
+    return (
+      <div className="flex flex-col items-center gap-2 py-6 text-neutral-500">
+        <span className="text-xs font-mono">Diagram unavailable</span>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full min-h-[120px] flex items-center justify-center bg-transparent overflow-x-auto">
-      {error ? (
-        <div className="flex flex-col items-center gap-2 py-8 text-neutral-500">
-          <span className="text-xs font-mono">Diagram unavailable</span>
-        </div>
-      ) : svgCode ? (
-        <div
-          className="w-full flex justify-center [&_svg]:max-w-full"
-          dangerouslySetInnerHTML={{ __html: svgCode }}
-        />
-      ) : (
-        <div className="w-4 h-4 border-2 border-neutral-700 border-t-emerald-500 rounded-full animate-spin" />
-      )}
+      <img
+        src={svgUrl}
+        alt="Architecture Diagram"
+        className="max-w-full h-auto"
+        style={{ filter: 'invert(0)', minHeight: '100px' }}
+        onError={() => setError(true)}
+        loading="lazy"
+      />
     </div>
   );
 };
