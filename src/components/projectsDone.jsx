@@ -26,12 +26,12 @@ const projects = [
     date: "Nov 2024 – Present",
     stack: "TypeScript · Node.js · Docker · GitHub Actions",
     architectureCode: `flowchart TD
-    A["DevSecOps User / CI Pipeline"] -->|"CLI Commands"| B("SecAuditHub Core Engine")
-    B -->|"Plugin Execution"| C{"Security Scanner Modules"}
-    C -.->|"Static Analysis"| D["Trivy / CodeQL / Semgrep"]
-    C -.->|"Web & Cloud"| E["ZAP / Checkov / AWS"]
-    D & E -->|"Raw Data"| B
-    B -->|"Normalize & Aggregate"| F["Unified Audit Report"]`,
+    A["DevSecOps User"] -->|CLI Commands| B["SecAuditHub Engine"]
+    B -->|Plugin Exec| C{"Scanner Modules"}
+    C -.->|Static Analysis| D["Trivy / CodeQL / Semgrep"]
+    C -.->|Web Scan| E["ZAP / Checkov / AWS"]
+    D -->|Raw Data| F["Unified Audit Report"]
+    E -->|Raw Data| F`,
     architecturePlaceholder: true
   },
   {
@@ -41,11 +41,13 @@ const projects = [
     image: MathsGeekImg,
     metrics: "AI Personalized · Adaptive Learning",
     architectureCode: `flowchart TD
-    A["React Web Client"] & B["React Native App"] -->|"Authentication"| C("Firebase Auth")
-    A & B -->|"REST API"| D{"Spring Boot Backend"}
-    D -->|"Persistent Session"| E[("H2 Database")]
-    D -->|"Math Solver"| F["AI Engine & Mermaid Parsing"]
-    F -.->|"Step-by-step UI"| D`,
+    A["React Web"] -->|Auth| C["Firebase Auth"]
+    B["React Native"] -->|Auth| C
+    A -->|REST API| D{"Spring Boot Backend"}
+    B -->|REST API| D
+    D -->|Persist| E[("H2 Database")]
+    D -->|Solve| F["AI Math Engine"]
+    F -.->|Solution| D`,
     architecturePlaceholder: true
   },
   {
@@ -55,11 +57,11 @@ const projects = [
     image: Digisafe,
     metrics: "End-to-End Encryption · Vault Controls · Zero-Knowledge",
     architectureCode: `flowchart TD
-    A["User Client App"] -->|"AES-256 Encrypt & Hash"| B{"API Access Gateway"}
-    B -->|"Store Encrypted Blob"| C[("Secure Blob Storage")]
-    B -->|"Index Tags"| D["Search & Index Service"]
-    D <-->|"Metadata Query"| E[("Encrypted NoSQL DB")]
-    C -.->|"Retrieval & Decrypt"| A`,
+    A["User Client App"] -->|AES-256 Encrypt| B{"API Gateway"}
+    B -->|Store Blob| C[("Secure Blob Storage")]
+    B -->|Index Tags| D["Search Service"]
+    D -->|Metadata Query| E[("Encrypted NoSQL DB")]
+    C -.->|Decrypt and Retrieve| A`,
     architecturePlaceholder: true
   },
   {
@@ -69,10 +71,10 @@ const projects = [
     image: Coverter,
     metrics: "Modular Toolkit · Multi-format Support · Batch Processing",
     architectureCode: `flowchart TD
-    A["React Client"] -->|"Axios POST multipart"| B("FastAPI Router")
-    B -->|"Process Upload"| C{"Pillow Engine"}
-    C -->|"Format & Resize"| D[("uploads/ Storage")]
-    D -.->|"Download URL"| A`,
+    A["React Client"] -->|Axios POST| B["FastAPI Router"]
+    B -->|Process Upload| C{"Pillow Engine"}
+    C -->|Format and Resize| D[("uploads/ Storage")]
+    D -.->|Download URL| A`,
     architecturePlaceholder: true
   },
   {
@@ -82,11 +84,11 @@ const projects = [
     image: Tradingbot,
     metrics: "Cross-Platform Android/PC · Real-Time Stats · Kivy UI",
     architectureCode: `flowchart TD
-    E["GetToken Script"] -->|"OAuth Login"| F("Pickled Session")
-    F -.->|"Loaded by"| A
-    A["Kivy GUI App"] -->|"Place/Modify Orders"| B{"AliceBlue API Client"}
-    B <-->|"REST & WSS Streams"| C["Alice Blue Broker Trading Engine"]
-    A -->|"Persist Open/Closed Trades"| D[("RethinkDB")]`,
+    E["GetToken Script"] -->|OAuth Login| F["Pickled Session"]
+    F -.->|Loaded by| A
+    A["Kivy GUI App"] -->|Place Orders| B{"AliceBlue API Client"}
+    B -->|REST and WSS| C["Alice Blue Broker"]
+    A -->|Persist Trades| D[("RethinkDB")]`,
     architecturePlaceholder: true
   },
   {
@@ -96,12 +98,13 @@ const projects = [
     image: BookStore,
     metrics: "Full-Stack TypeScript · Scalable Arch · Secure Auth",
     architectureCode: `flowchart TD
-    A["Web Browser"] -->|"Navigation"| B{"Angular 5 Router & Auth Guard"}
-    B -->|"Protected"| C["Add/Edit UI via Angular Material"]
-    B -->|"Public"| D["Catalog & Search via ng2-search-filter"]
-    C & D -->|"Dependency Injection"| E("Bookstore Data Service")
-    B -->|"Validation"| F["Auth Service"]
-    E -.->|"Data Fetching"| G[("Remote API / State")]`,
+    A["Web Browser"] -->|Navigate| B{"Angular Router and Guard"}
+    B -->|Protected| C["Add/Edit Book UI"]
+    B -->|Public| D["Catalog and Search"]
+    C -->|Inject| E["Bookstore Service"]
+    D -->|Inject| E
+    B -->|Validate| F["Auth Service"]
+    E -.->|Fetch Data| G[("Remote API")]`,
     architecturePlaceholder: true
   },
 ];
